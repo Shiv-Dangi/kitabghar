@@ -1,0 +1,58 @@
+{% load staticfiles %}
+
+    <style>
+        .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:active{color:#BA2020;}
+        @media screen and (max-width: 1290px) {
+            h1{font-size:24px;}
+            h5{font-size: 15px;}
+        }
+        @media screen and (max-width: 600px) {
+            h1{font-size:14px;}
+            h5{font-size: 10px;}
+        }
+    </style>
+<div class="container">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    
+    <div class="row">   
+        <div class="navbar navbar-default navbar-fixed-top col-md-11  row" style="width:100%;margin:0 0 0 0; padding:15px 0px">
+            <div class="container col-sm-5 " style="display:inline; padding-left:3% ;margin:-0% -2% -1% -2%">
+                <a href="/" style="text-decoration:none;">
+                  <img class="img-responsive" style="display:inline;margin-top:-3%;" src="{% static 'mutech/images/mutech.jpg' %}" alt="My logo" width="15%"  height="10%"  title="Institute logo";/>&nbsp;&nbsp;&nbsp;
+                    <span style="margin-top:400px;"><h1 style="display:inline;padding-top:3%; color:#AEAEAE;">Mu-tech Robotics</h1></span>
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse col-sm-7" id="bs-example-navbar-collapse-1" style="padding-left:2%">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/mutech/aboutus/">Aboutus</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/mutech/project/">Projects</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/mutech/training/">Training&Workshop</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/mutech/product/">products</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="/mutech/contact/">Contactus</a>
+                    </li>
+                </ul>                
+            </div>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- end of row class-->
+</div>

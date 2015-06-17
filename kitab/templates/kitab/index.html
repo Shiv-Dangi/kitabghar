@@ -1,0 +1,207 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="{% static 'bootstrap_template/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'mutech/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'bootstrap_template/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'bootstrap_template/css/freelancer.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'mutech/css/index.css' %}" rel="stylesheet" type="text/css">
+    <title>Home</title>
+
+    <style type="text/css">
+        #slider_errow:hover{
+                color: #fff;
+                text-shadow: 1px 1px 1px #ccc;
+                font-size: 1.5em;
+        }
+        .newsArticle_list{
+            text-decoration:none;
+            color:hsl(210, 89%, 47%)
+        }  
+        .newsArticle_list:hover{
+            text-decoration:underline;
+            color:hsl(210, 89%, 47%) }
+        #BothNewsArticle_div
+        {
+             background-color:#EDEDED;
+             border:hsl(0, 0%, 87%);
+             padding:0px; 
+             border-top-left-radius: 1em; 
+             border-top-right-radius: 0.5em;
+             height:400px;
+             border-bottom-right-radius: 0.5em;
+             border-bottom-left-radius:0.5em;   
+        }
+        #article_div {
+            background-color:hsl(210, 29%, 24%);
+            border-top-right-radius: 0.5em;
+            color:white;
+            width:100%; 
+            height:35px;
+            padding:10px;
+        }
+        #news_div{
+            background-color:hsl(210, 29%, 24%);
+            border-top-left-radius:0.5em;
+            color:white;
+            width:110%;
+            height:35px;
+
+            padding:10px 30px 10px 10px;
+        }
+        #slider_image{
+            height:300px;
+            border:3px solid #737373;
+        }
+        .content {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div>{% include "mutech/header.html" %}</div>
+    <div class="midDiv col-md-12 col-sm-12 row" style="margin-left:0.0%; margin-top:5%; overflow: hidden;">
+
+       <!--Slider - START -->
+       <div class="row" style="margin-top:-5%">
+           <div class="col-md-1" style="margin-top:10%;">
+                <div class="controls pull-right hidden-xs" style="text-align: center;">
+                    <a id="slider_errow" class="left fa fa-chevron-left btn btn" href="#carousel-example" data-slide="prev" style="color:black;vertical-align: middle"></a>
+                </div>
+           </div>
+            {% if slider_list %}
+                {% for q in slider_list %}
+                   <div class="container col-md-10">
+                        <div class="row" style="height:350px">
+                            <div id="carousel-example" class="carousel slide hidden-xs " data-ride="carousel">
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <div class="row" style="height:1000px">
+                                            <div class="col-sm-3" style="">
+                                                <img id="slider_image" src="../../../media/{{q.slider_image1}}" class="img-responsive" alt="a" style="" /> 
+                                            </div>
+                                            <div class="col-sm-3" style="">
+                                                <img id="slider_image" src="../../../media/{{q.slider_image2}}" class="img-responsive" alt="a" style="heigth:500px" /> 
+                                            </div>
+                                            <div class="col-sm-3" style="">
+                                                <img id="slider_image" src="../../../media/{{q.slider_image3}}" class="img-responsive" alt="a" style="heigth:500px" /> 
+                                            </div>
+                                            <div class="col-sm-3" style="">
+                                                <img id="slider_image" src="../../../media/{{q.slider_image4}}" class="img-responsive" alt="a" style="heigth:500px" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="row">
+                                            <div class="col-sm-3" style="">
+                                                <img id="slider_image" src="../../../media/{{q.slider_image5}}" class="img-responsive" alt="a" style="heigth:500px; " />
+                                            </div>
+                                            <div class="col-sm-3" style="">
+                                                <img id="slider_image" src="../../../media/{{q.slider_image6}}" class="img-responsive" alt="a" style="heigth:500px" />
+                                            </div>
+                                            <div class="col-sm-3" style=";">
+                                                <img id="slider_image" src="../../../media/{{q.slider_image7}}" class="img-responsive" alt="a" style="heigth:500px" />
+                                            </div>
+                                            <div class="col-sm-3" style="">
+                                                <img id="slider_image" src="../../../media/{{q.slider_image8}}" class="img-responsive" alt="a" style="heigth:500px" /> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}      
+            <div class="controls pull-right hidden-xs col-md-1" style="margin-top:10%;">
+                <a id="slider_errow" class="right fa fa-chevron-right btn" href="#carousel-example" data-slide="next" style="color:black"></a>
+            </div>
+        </div><!--slider ends--><br>
+
+
+        <!-- news and activities section start-->
+        <div class="row" style="padding-bottom:5%;">
+            <div class="col-md-1"></div>
+            
+            <div class="col-md-10 col-sm-10"  id="BothNewsArticle_div">
+                <div class="col-md-6 col-sm-6" style=" padding:0px; ">
+                    <div class="col-md-12 text-uppercase" id="news_div" style="">
+                        <span style="font-size:16px;margin-left: 5%; ">News</span>
+                    </div>
+                    <div style="padding:15% 0 5%  20% ;">
+                        <p>News</p>
+                            {% if news_list %}
+                                {% for q in news_list %}
+                                    <ul class="list-unstyled" >
+                                        <a class="newsArticle_list" data-toggle="collapse" data-target="#news{{ q.id }}" aria-expanded="true" aria-controls="collapseExample" data-dismiss=".newsArticle_list" onclick="toggleVisibility('news{{ q.id }}');"> <li>{{ q.news_title }}</li></a>
+                                        <div class="collapse" id="news{{ q.id }}">
+                                            <div class="well content" id="news{{ q.id }}">
+                                                {{ q.news_desc|slice:":155"  }}
+                                                <a href="#" style="color:#0D77E2;">detail</a>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                {% endfor %}
+                            {% endif %}            
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6" style="padding:0px;">
+                    <div class="col-md-12 text-right text-uppercase" id="article_div" >
+                        <span style="font-size: 16px; margin-top:50px; margin-right: 5%; ">Activities</span>
+                    </div>
+                    <div style="padding:15% 0 5% 15%">
+                        <p>Activities</p>
+                            {% if article_list %}
+                                {% for q in article_list %}
+                                    <ul class="list-unstyled" >
+                                        <a class="newsArticle_list" data-toggle="collapse" data-target="#article{{ q.id }}" aria-expanded="true" aria-controls="collapseExample" onclick="toggleVisibility('article{{ q.id }}');"> <li>{{ q.article_title }}</li></a>
+                                        <div class="collapse" id="article{{ q.id }}">
+                                            <div class="well content" id="article{{ q.id }}">
+                                                {{ q.article_desc|slice:":155"  }}
+                                                <a href="#" style="color:#0D77E2;">detail</a>
+                                            </div>
+                                        </div>
+                                    </ul>
+                                {% endfor %}
+                            {% endif %}            
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-1"></div>     
+        </div><!-- end of news and activities-->
+
+    </div><!--middiv ends-->
+<div class="row">{% include "mutech/footer.html" %}</div>
+<script src="{% static 'mutech/js/jquery.min.js' %}"></script>
+<script src="{% static 'mutech/js/bootstrap.min.js' %}"></script>
+<!--extra javascript-->
+    <script type="text/javascript">
+
+    function toggleVisibility(selectedTab) {
+
+         // Get a list of your content divs
+         var content = document.getElementsByClassName('content');
+
+         // Loop through, hiding non-selected divs, and showing selected div
+         for(var i=0; i<content.length; i++) {
+              if(content[i].id == selectedTab) {
+                    content[i].style.display = 'block';
+              } else {
+                    content[i].style.display = 'none';
+              }
+         }
+
+    }
+    </script>
+
+</body>
+</html>

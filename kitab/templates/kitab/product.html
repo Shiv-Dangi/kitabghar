@@ -1,0 +1,163 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Products</title>
+    <link href="{%static 'mutech/modern-business.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'mutech/css/agency.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'bootstrap_template/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'mutech/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'bootstrap_template/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'bootstrap_template/css/freelancer.css' %}" rel="stylesheet" type="text/css">
+    <style>
+    .product_schema{
+        padding-left:3%;
+    }
+</style>
+</head>
+<body>
+    <div>{% include "mutech/header.html" %}</div>
+    <div class="midDiv">
+        <div class="container" style="width:90%">
+           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        <!-- List of products -->
+            <h2 align="center" style="margin-bottom:2%;margin-top:-2%;">Products</h2>
+            <div class="row" style="color:hsl(360, 71%, 42%);font-size:120%"><b>
+                <div class="col-md-2 product_schema">Image</div>
+                <!--<div class="col-md-1 ">Model#</div>-->
+                <div class="col-md-6 ">Description</div>
+                <div class="col-md-2 ">Availability</div>
+                <div class="col-md-1 ">Pricing</div></b>
+            </div><br>
+            {% if product_list %}
+            {% for q in product_list %}
+            <!-- <hr style-"padding-left:0%;padding-right:0%; margin-top:-100px;magrin-bottom:-100px">-->
+                <div style="margin:none; border-top:2px solid black; border-bottom:2px solid black; padding-left:1.2%; padding-right:1.2%; color:black">
+                    {% if q.id|divisibleby:2 %}
+                        <div class="row" style="padding:1%;font-size:150%">
+                    {% else %}
+                        <div class="row" style="background-color:hsl(0, 0%, 76%); font-size:150%;padding:1%;">
+                    {% endif %}
+
+                    <a href="#{{ q.id }}" class="portfolio-link" data-toggle="modal" style="color:hsl(210, 29%, 24%)">
+                        <div class="col-md-2">
+                            <img src="../../../media/{{q.product_image|slice:":3"}}" class="img-responsive img-rounded" alt="" style="width:80%;height:100px;padding-left:-10%">
+                        </div>
+                        <!--<div class="col-md-1">{{ q.id }}</div>-->
+                        <div class="col-md-6">
+                            <h4 style="color:hsl(31, 100%, 39%)">{{ q.product_title }}</h4>
+                            <span style="font-size:85%">{{ q.product_desc|slice:":100" }}...</span>
+                        </div>
+                        <div class="col-md-2">
+                            {% if q.product_stock == True %}
+                                In stock
+                            {% else %}
+                                Out of stock
+                            {% endif %}
+                        </div>
+                        <div class="col-md-1">{{ q.product_price }}</div>
+                    </a>
+                    </div>
+                    </div>
+            {% endfor %}
+        {% else %}
+        <center><h1>No product Found </h1></center>  
+        {% endif %}
+        </div>
+    </div>
+</div><!-- midDiv ends -->
+
+
+
+<!-- Modal content starts  -->
+
+    {% if product_list %}
+        {% for q in product_list %}
+        <!-- Portfolio Modal 1 -->
+        <div class="portfolio-modal modal fade" id="{{ q.id }}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <h2>{{ q.product_title }}</h2>
+                    </div>
+                    <div class="row" style="margin-top:2%">
+                        <div class="col-lg-6 col-sm-6 col-lg-offset-">
+                            <div class="modal-body">
+                                <img class="img-responsive img-centered" src="../../../media/{{q.product_image}}" alt="" style="width:80%; height:80%">
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-2 "></div>
+                        <div class="col-lg-4 col-sm-4 col-lg-offset-" style="border:1px solid transparent;">
+                            <div style="border:1px solid black; height:400px;width:250px; border-radius:0.6em; padding:0% 0% 0% 0%;margin:0% 0% 0% 0%">
+                                <p class="text-uppercase"  style="text-align:center;background-color:hsl(210, 29%, 24%);color:white;font-size:16px; width:100% ; height:10%;  border-top-left-radius:0.5em;  border-top-right-radius:0.5em; padding-top:4%;"><b>Details</b>
+                                </p>
+                                <span style="text-align:center; padding:10%">
+                                    <p>Model No:&nbsp;{{ q.id }}</p><hr>
+                                    <p>Availability:&nbsp;
+                                        {% if q.product_stock == True %}
+                                            In stock
+                                    </p>
+                                    <p>
+                                        {% else %}
+                                            Out of stock
+                                    </p>
+                                        {% endif %}
+                                    <hr><p>Price:&nbsp;{{ q.product_price }}</p><hr><br><br>
+                                    <a href="/mutech/contact/">
+                                        <button  type="button" class="btn btn-primary" style="background-color:hsl(208, 56%, 46%); color:white;">Apply for product
+                                        </button>
+                                    </a>
+                                </span>    
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <h3>Product Description</h3>
+                        <p style="text-align:justify">{{ q.product_desc }}</p>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">
+                            <i class="fa fa-times"></i> Close 
+                        </button>
+                        <a class="btn btn-primary" href="{{ q.product_pdf_link }}" target="_blank"><i class="fa fa-download"></i> Download PDF 
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      {% endfor %} 
+    {% endif %}
+<!-- end of the modal-->
+<div>{% include "mutech/footer.html" %}</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="{% static 'mutech/js/jquery.min.js' %}"></script>
+<script src="{% static 'mutech/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript">
+    console.log("yes");
+    $(document).ready(function(){
+        var a = document.getElementById('vertical_nav').getElementsByTagName('a');
+        for(i = 0; i<10; i++)
+            alert(a[i]);
+        
+       })
+        
+</script>                                                                                       
+
+
+</body>
+</html>
