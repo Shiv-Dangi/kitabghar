@@ -8,4 +8,5 @@ admin.site.register(course)
 admin.site.register(stream) 
 admin.site.register(course_subject)
 admin.site.register(subject_book)
+admin.site.register(bookrequest)
 

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>KitabGhar/aboutus</title>
+<title>KitabGhar/Catagaries</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="{%static 'kitab/templatemo_style.css' %}" rel="stylesheet" type="text/css" />
@@ -16,22 +16,47 @@
 <body>
 <!--  Free CSS Templates from www.templatemo.com -->
 <div id="templatemo_container">
+    
     <div>{% include "kitab/header.html" %}</div>
     <div id="templatemo_content">
         
         <div>{% include "kitab/sidebar.html" %}</div>
-        
+       
+       {% if book_list %}
+       	{% for q in book_list %}
+
+        <div id="templatemo_content_right">
+            <div class="templatemo_product_box">
+                <h1>{{ q.book_name }}  <span>(by {{ q.book_author }})</span></h1>
+          <img src="{% static 'kitab/img/templatemo_image_01.jpg' %}" alt="image" />
+                <div class="product_info">
+                    <p>Etiam luctus. Quisque facilisis suscipit elit. Curabitur...</p>
+                  <h3>$55</h3>
+                    <div class="buy_now_button"><a href="subpage.html">Buy Now</a></div>
+                    <div class="detail_button"><a href="subpage.html">Download pdf</a></div>
+                </div>
+                <div class="cleaner">&nbsp;</div>
+            </div>
             
+            <div class="cleaner_with_width">&nbsp;</div>
+       {% endfor %}
+	{% endif %}            
+            
+            
+            
+            
+            
+            
+            
+            <a href="subpage.html"><img src="{% static 'kitab/img/templatemo_ads.jpg' %}" alt="ads" /></a>
+        </div> <!-- end of content right -->
+    
         <div class="cleaner_with_height">&nbsp;</div>
     </div> <!-- end of content -->
-    <div>{% include "kitab/footer.html" %}</div>
+    
     <!--  Free CSS Template www.templatemo.com -->
 </div> <!-- end of container -->
-<!-- templatemo 086 book store -->
-<!-- 
-Book Store Template 
-http://www.templatemo.com/preview/templatemo_086_book_store 
--->
+<div>{% include "kitab/footer.html" %}</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="{% static 'kitab/js/jquery.min.js' %}"></script>
 <script src="{% static 'kitab/js/bootstrap.min.js' %}"></script>

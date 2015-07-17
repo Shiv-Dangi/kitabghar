@@ -1,36 +1,41 @@
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Contactus</title>
-    <link href="{%static 'mutech/modern-business.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'bootstrap_template/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'mutech/style.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'bootstrap_template/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
-    <link href="{% static 'bootstrap_template/css/freelancer.css' %}" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="{%static 'mutech/js/jquery-1.10.2.min.js' %}"></script>
-    <!--<script type="text/javascript" src="{%static 'mutech/js/MyFormValidation.js' %}"></script>-->
-
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>KitabGhar/ContactUs</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="{%static 'kitab/templatemo_style.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'kitab/bootstrap.min.css' %}" rel="stylesheet" type="text/css"> 
+<link href="{% static 'kitab/bootstrap.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'kitab/project_dropdown_menu2.css' %}" rel="stylesheet" type="text/css">
+<!--<link href="{% static 'kitab/project_dropdown_menu1.css' %}" rel="stylesheet" type="text/css">-->
+<link href="{% static 'kitab/agency.css' %}" rel="stylesheet" type="text/css">
+<style>
+    .header {
+        background-color: ;
+        color: #36A0FF;
+        font-size: 27px;
+        padding: 10px; 
+    }
+</style>
 </head>
 <body>
-<div>{% include "mutech/header.html" %}</div>
-<div class="midDiv">
 <script>
 function fun() {
     alert("Your message is sent to admin!");
 }
 </script>
-
-		<!-- Contact with Map - START -->
-<div class="container">
-    <div class="row" style="margin-top:1%;">
+<div id="templatemo_container">
+    <div>{% include "kitab/header.html" %}</div>
+    <div id="templatemo_content">  
+    <div class="">   
+        <div>{% include "kitab/sidebar.html" %}</div>
+        <div class="col-md-1"></div>
+    
         <div class="col-md-6">
-            <div class="well well-sm">
+            
                 <form class="form-horizontal" id="form" method="post" novalidation>
                 {% csrf_token %}
                     <fieldset>
@@ -74,73 +79,12 @@ function fun() {
                     </fieldset>
                 </form>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="well well-sm">
-                <div class="panel panel-default">
-                    <div class="text-center header">Our Office</div>
-                    <div class="panel-body text-center">
-                        <h4>Address</h4>
-                        <div>
-                        205-A silver Mall<br />
-                        R.N.T. Marg Indore (M.P.) India<br />
-                        +91-8878100400<br />
-                        Email: info@mutechrobotics.com<br />
-                        </div>
-                        <hr />
-                        <div id="map1" class="map">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+		</div>            
+    </div> <!-- end of content -->
+    <div>{% include "kitab/footer.html" %}</div>
+    <!--  Free CSS Template www.templatemo.com -->
+</div> <!-- end of container -->
 
-
-<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-
-<script type="text/javascript">
-    jQuery(function ($) {
-        function init_map1() {
-            var myLocation = new google.maps.LatLng(22.71677, 75.87436);
-            var mapOptions = {
-                center: myLocation,
-                zoom: 16
-            };
-            var marker = new google.maps.Marker({
-                position: myLocation,
-                title: "Property Location"
-            });
-            var map = new google.maps.Map(document.getElementById("map1"),
-                mapOptions);
-            marker.setMap(map);
-        }
-        init_map1();
-    });
-</script>
-
-<style>
-    .map {
-        min-width: 300px;
-        min-height: 300px;
-        width: 100%;
-        height: 48%;
-    }
-
-    .header {
-        background-color: #F5F5F5;
-        color: #36A0FF;
-        height: 70px;
-        font-size: 27px;
-        padding: 10px;
-    }
-</style>
-<script type="text/javascript">
-	function fun{
-		alert("Hello");
-	}
-</script>
 
 <script>
     function myFunction() {
@@ -150,7 +94,7 @@ function fun() {
     {
         var e =event;
         var charCode = e.which || e.keyCode;
-        if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122) || charCode == 8 || charCode == 9)
+        if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122) || charCode == 8 || charCode == 9 || charCode == 32)
             return true;
         else 
             return false;
@@ -165,11 +109,11 @@ function fun() {
                  return false;
     }
 </script>
-<!-- Contact with Map - END -->
 
-</div><!-- end of middiv -->
-<div>{% include "mutech/footer.html" %}</div>
-<script type="text/javascript" src="{% static 'mutech/js/jquery.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'mutech/js/bootstrap.min.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="{% static 'kitab/js/jquery.min.js' %}"></script>
+<script src="{% static 'kitab/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'kitab/js/sb-admin-2.js' %}"></script>
+<script src="{% static 'kitab/js/metisMenu.min.js' %}"></script>
 </body>
 </html>

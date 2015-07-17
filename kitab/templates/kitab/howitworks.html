@@ -3,29 +3,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>KitabGhar</title>
+<title>KitabGhar/How it Works</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="{%static 'kitab/templatemo_style.css' %}" rel="stylesheet" type="text/css" />
 <link href="{% static 'kitab/bootstrap.min.css' %}" rel="stylesheet" type="text/css"> 
 <link href="{% static 'kitab/bootstrap.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'kitab/project_dropdown_menu2.css' %}" rel="stylesheet" type="text/css">
+<!--<link href="{% static 'kitab/project_dropdown_menu1.css' %}" rel="stylesheet" type="text/css">-->
+<link href="{% static 'kitab/agency.css' %}" rel="stylesheet" type="text/css">
 </head>
 <body>
 <!--  Free CSS Templates from www.templatemo.com -->
 <div id="templatemo_container">
     <div>{% include "kitab/header.html" %}</div>
     <div id="templatemo_content">
-        <div id="templatemo_content_right">
-            <a href="subpage.html"><img src="{% static 'kitab/img/templatemo_ads.jpg' %}" alt="ads" /></a>
-        </div> <!-- end of content right -->
-    
+        
+        <div>{% include "kitab/sidebar.html" %}</div>
+        
+            
         <div class="cleaner_with_height">&nbsp;</div>
     </div> <!-- end of content -->
     <div>{% include "kitab/footer.html" %}</div>
     <!--  Free CSS Template www.templatemo.com -->
 </div> <!-- end of container -->
+<!-- templatemo 086 book store -->
+<!-- 
+Book Store Template 
+http://www.templatemo.com/preview/templatemo_086_book_store 
+-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="{% static 'kitab/js/jquery.min.js' %}"></script>
 <script src="{% static 'kitab/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'kitab/js/sb-admin-2.js' %}"></script>
+<script src="{% static 'kitab/js/metisMenu.min.js' %}"></script>
 </body>
 </html>

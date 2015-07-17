@@ -21,7 +21,7 @@ class course(models.Model):
         	
 class subject(models.Model):
     subject_name = models.CharField(max_length=200)
-
+    stream_id = models.ForeignKey(stream, null = True)
     def __unicode__(self):              
         	return str(self.subject_name)		    	
 
@@ -36,11 +36,11 @@ class book(models.Model):
         	return str(self.book_name)
 
 class course_subject(models.Model):
-	stream_id = models.ForeignKey(stream)
+	course_id = models.ForeignKey(course, null = True)
 	subject_id = models.ForeignKey(subject)
 
 	def __unicode__(self):              
-        	return str(self.stream_id)
+        	return str(self.course_id)
 
 class subject_book(models.Model):
 	subject_id = models.ForeignKey(subject)
@@ -49,3 +49,23 @@ class subject_book(models.Model):
 	def __unicode__(self):              
         	return str(self.subject_id)
 
+class bookrequest(models.Model):
+	user_name = models.CharField(max_length=200)
+	user_emailid = models.EmailField(max_length=254)
+	book_name = models.CharField(max_length=200)
+	book_author = models.CharField(max_length=200)
+	book_edition = models.CharField(max_length=50)
+
+	def __unicode__(self):
+		return str(self.user_name)
+
+class contactus(models.Model):
+	fname = models.CharField(max_length=50)
+	lname = models.CharField(max_length=50)
+	email = models.EmailField(max_length=50)
+	phone_no = models.BigIntegerField(max_length=13)
+	message = models.TextField(max_length=5000)
+
+	def __unicode__(self):              
+        	return str(self.fname) 		
+		
