@@ -20,18 +20,27 @@
     <div id="templatemo_content">
         
         <div>{% include "kitab/sidebar.html" %}</div>
-        
-            
+
+        	<div class="" style="display:inline; margin-left:5%">
+                <div class="col-md-" style="margin-top:2%;">
+                    <img class="img-responsive" src="../../../media/{{q.aboutus_image}}" alt="Mutech image" style="height:300px; width:95%">
+                </div>
+                <div class="col-md-">
+                    <h2>{{ q.aboutus_title }}</h2>
+                    <p align="justify">Kitab-Ghar is a oline collection of links of the ebooks required for different course</p>
+                    <p align="justify">Here at Kitab-Ghar we have collected the live link from which ebooks can be download with single click. we have classified books on the basis of subjects and courses </p>
+                    <p align="justify">The Kitab-Ghar aims at provide the visitor a simple and sweet way to getting to the desired ebook</p>
+                    <p align="justiy">And for our visitor we have also providing a mechanism for requesting the book in which the desirable ebook is searched by us and is provided to the user</p>
+                    <p align="center"></p>
+                </div>
+           	</div>
+
         <div class="cleaner_with_height">&nbsp;</div>
     </div> <!-- end of content -->
-    <div>{% include "kitab/footer.html" %}</div>
+    <div style="margin-left: -20px;">{% include "kitab/footer.html" %}</div>
     <!--  Free CSS Template www.templatemo.com -->
 </div> <!-- end of container -->
-<!-- templatemo 086 book store -->
-<!-- 
-Book Store Template 
-http://www.templatemo.com/preview/templatemo_086_book_store 
--->
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="{% static 'kitab/js/jquery.min.js' %}"></script>
 <script src="{% static 'kitab/js/bootstrap.min.js' %}"></script>
