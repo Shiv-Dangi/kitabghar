@@ -21,46 +21,126 @@
     <div id="templatemo_content">
         
         <div>{% include "kitab/sidebar.html" %}</div>
-       
-       {% if book_list %}
-       	{% for q in book_list %}
+         
 
-        <div id="templatemo_content_right">
-            <div class="templatemo_product_box">
-                <h1>{{ q.book_name }}  <span>(by {{ q.book_author }})</span></h1>
-          <img src="{% static 'kitab/img/templatemo_image_01.jpg' %}" alt="image" />
-                <div class="product_info">
-                    <p>Etiam luctus. Quisque facilisis suscipit elit. Curabitur...</p>
-                  <h3>$55</h3>
-                    <div class="buy_now_button"><a href="subpage.html">Buy Now</a></div>
-                    <div class="detail_button"><a href="subpage.html">Download pdf</a></div>
-                </div>
-                <div class="cleaner">&nbsp;</div>
-            </div>
+                <div id="templatemo_content_right">     
+                	{% if book_list %}
+                    	{% for q in book_list %}         
+	                      <div class="templatemo_product_box">
+	                        <h1>{{ q.book_name }}  <span>(by {{ q.book_author }})</span></h1>
+	                        <img src="{% static 'kitab/img/templatemo_image_01.jpg' %}" alt="image" />
+	                        <div class="product_info">
+	                          <p>Etiam luctus. Quisque facilisis suscipit elit. Curabitur...</p>
+	                          <h3>$55</h3>
+	                          <div class="buy_now_button"><a href="subpage.html">Buy Now</a></div>
+	                          <div class="detail_button"><a href="">Download pdf</a></div>
+	                        </div>
+	                        <div class="cleaner">&nbsp;</div>
+	                      </div>
+	                      <div class="cleaner_with_width">&nbsp;</div>
+                    	{% endfor %}
+                  {% else %}
+                    <p>No Book Found</p>
+                  {% endif %}
+                  <!--
+           
+                	{% for q in streamId.book_set.all %}
+                    <div class="templatemo_product_box">
+                      <h1>{{ q.book_name }}  <span>(by {{ q.book_author }})</span></h1>
+                      <img src="{% static 'kitab/img/templatemo_image_01.jpg' %}" alt="image" />
+                      <div class="product_info">
+                        <p>Etiam luctus. Quisque facilisis suscipit elit. Curabitur...</p>
+                        <h3>$55</h3>
+                        <div class="buy_now_button"><a href="subpage.html">Buy Now</a></div>
+                        <div class="detail_button"><a href="">Download pdf</a></div>
+                      </div>
+                      <div class="cleaner">&nbsp;</div>
+                    </div>
+                    <div class="cleaner_with_width">&nbsp;</div>
+                  {% endfor %}               
+                -->
+                </div><!-- end of content right -->
             
-            <div class="cleaner_with_width">&nbsp;</div>
-       {% endfor %}
-	{% endif %}            
-            
-            
-            
-            
-            
-            
-            
-            <a href="subpage.html"><img src="{% static 'kitab/img/templatemo_ads.jpg' %}" alt="ads" /></a>
-        </div> <!-- end of content right -->
-    
-        <div class="cleaner_with_height">&nbsp;</div>
     </div> <!-- end of content -->
     
-    <!--  Free CSS Template www.templatemo.com -->
 </div> <!-- end of container -->
-<div>{% include "kitab/footer.html" %}</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<div style="margin-left: 0px;">{% include "kitab/footer.html" %}</div>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>-->
 <script src="{% static 'kitab/js/jquery.min.js' %}"></script>
-<script src="{% static 'kitab/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'kitab/js/sb-admin-2.js' %}"></script>
-<script src="{% static 'kitab/js/metisMenu.min.js' %}"></script>
+<script>
+     
+    $(document).ready(function(){
+        $('#id_stream').change(function(){
+        	strm_id =$(this).val();
+            //alert(strm_id);
+            request_url = 'kitab/get_course/' + strm_id + '/';
+            //alert(request_url)
+            $.ajax({
+                url: request_url,
+                success: function(data){
+                	data = $.parseJSON(data);
+                	//alert(typeof(data))
+                	$('#id_course').html('<option selected="' + "selected" + '">' + '' +'</option>');
+                	$('#id_subject').html('<option selected="' + "selected" + '">' + '' +'</option>');
+                	//alert(typeof(data));
+	                $.each(data, function(key, value){
+	                    //alert(typeof(data));
+	                    //alert(JSON.stringify(data));
+	                    $('#id_course').append('<option>' + value +'</option>');
+	                }); 
+            	}, 
+	            errors: function(e) {
+	                alert(e);
+            	}
+        	})
+    	});
+
+      	$('#id_course').change(function(){  
+        	cours_id = $(this).val();
+        	request_url = 'kitab/get_subject/' + cours_id + '/';
+        	$.ajax({
+                url: request_url,
+                success: function(data){
+	                data = $.parseJSON(data);
+	                //alert(typeof(data))
+	                //$('#id_subject').html('<option selected="' + "selected" + '">' + '' +'</option>');
+	                $.each(data, function(key, value){
+	                    //alert(typeof(data))
+	                    //console.log(typeof(key), typeof(value));
+	                    $('#id_subject').append('<option>' + value +'</option>');
+	                }); 
+            	}, 
+	            errors: function(e) {
+	                alert(e);
+            	}
+            })
+        });
+
+        $('#id_subject').change(function(){  
+        sub_id = $(this).val();
+        request_url = 'kitab/show_book/' + sub_id + '/';
+        alert(request_url)
+        $.ajax({
+                url: request_url,
+                success: function(data){
+                data = $.parseJSON(data);
+                //alert(typeof(data))
+                //$('#id_subject').html('<option selected="' + "selected" + '">' + '' +'</option>');
+                $.each(data, function(key, value){
+                    //alert(typeof(data))
+                    //console.log(typeof(key), typeof(value));
+                    $('#id_subject').append('<option>' + value +'</option>');
+                }); 
+            }, 
+            errors: function(e) {
+                alert(e);
+            }
+              })
+        });
+     
+}); 
+    </script>  
+
+
 </body>
 </html>

@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, render_to_response
 from django import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from kitab.models import *
+import json
 # Create your views here.
 def index(request):
 	subject_list = subject.objects.all()
@@ -78,6 +79,12 @@ def catagaries(request):
 	context = {'subject_list':subject_list ,'book_list':book_list ,'course_list':course_list ,'stream_list':stream_list}
 	return render(request, 'kitab/catagaries.html',context)
 
+def show_book(request, sub_id):
+	current_subject = subject.objects.get(stream_name=strm_id)
+	book_list = subject_book.objects.all().filter(subject_id_id=current_subject)
+	context = { 'book_list':book_list , 'books_list':books_list }
+	return render(request, 'kitab/catagaries.html', context)
+
 def howitworks(request):
 	stream_list = stream.objects.all()
 	subject_list = subject.objects.all()
@@ -85,12 +92,40 @@ def howitworks(request):
 	course_list = course.objects.all()
 	context = {'subject_list':subject_list ,'book_list':book_list ,'course_list':course_list ,'stream_list':stream_list}
 	return render(request, 'kitab/howitworks.html',context)
+
+def get_course(request, strm_id):
+    current_stream = stream.objects.get(stream_name=strm_id)
+    courses = course.objects.all().filter(stream_id_id=current_stream)
+
+    course_dict = {}
+    for c in courses:
+        course_dict[c.course_name] = c.course_name
+
+    #data = [course_dict]
+    return HttpResponse(json.dumps(course_dict))
+
+
+def get_subject(request, cours_id):
+	current_course = course.objects.get(course_name=cours_id)
+	subjects = subject.objects.all().filter(course_id_id=current_course)	
+	
+	subject_dict = {}
+	for s in subjects:
+		subject_dict[s.subject_name] = s.subject_name
+	
+	#data = [subject_dict]	
+	return HttpResponse(json.dumps(subject_dict))
+
 '''
-def requestbook(request):
+def detail(request, stream_id1, course_id2=0, subject_id3=0):
+
 	stream_list = stream.objects.all()
+	course_list = course.objects.all()
 	subject_list = subject.objects.all()
 	book_list = book.objects.all()
-	course_list = course.objects.all()
-	context = {'subject_list':subject_list ,'book_list':book_list ,'course_list':course_list ,'stream_list':stream_list}
-	return render(request, 'kitab/requestbook.html',context)
-'''	
+	if stream_id1:
+		streamId = get_object_or_404(stream, pk=stream_id1)
+	context1 = {'course_list':course_list , 'subject_list':subject_list ,'stream_list':stream_list , 'streamId':streamId}
+
+	return render(request, 'kitab/catagaries.html', context1)	
+	'''

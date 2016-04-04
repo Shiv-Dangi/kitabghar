@@ -21,7 +21,7 @@ class course(models.Model):
         	
 class subject(models.Model):
     subject_name = models.CharField(max_length=200)
-    stream_id = models.ForeignKey(stream, null = True)
+    course_id = models.ForeignKey(course, null = True)
     def __unicode__(self):              
         	return str(self.subject_name)		    	
 
@@ -35,6 +35,12 @@ class book(models.Model):
 	def __unicode__(self):              
         	return str(self.book_name)
 
+class stream_course(models.Model):
+	stream_id = models.ForeignKey(stream)
+	course_id = models.ForeignKey(course)
+	def __unicode__(self):
+		return str(self.course_id)
+		
 class course_subject(models.Model):
 	course_id = models.ForeignKey(course, null = True)
 	subject_id = models.ForeignKey(subject)
