@@ -78,6 +78,25 @@ def catagaries(request):
 	course_list = course.objects.all()
 	context = {'subject_list':subject_list ,'book_list':book_list ,'course_list':course_list ,'stream_list':stream_list}
 	return render(request, 'kitab/catagaries.html',context)
+'''
+def show_project(request):
+	branch_list = branch.objects.all()
+	subbranch_list = subbranch.objects.all()
+	context = {'branch_list':branch_list , 'subbranch_list':subbranch_list }
+	return render(request, 'mutech/show_project.html/1/', context)
+'''
+def show_book(request, sub_name):
+	current_subject = subject.objects.get(subject_name=sub_name)
+	book_list = subject_book.objects.all().filter(subject_id_id=current_subject)
+	
+	'''
+	book_dict = {}
+	for b in book_list:
+		book_dict[b.book_name] = b.book_name
+	'''
+	
+	context = { 'book_list':book_list }
+	return render(request, 'kitab/catagaries.html', context)
 
 def show_book(request, sub_id):
 	current_subject = subject.objects.get(stream_name=strm_id)

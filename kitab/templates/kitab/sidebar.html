@@ -9,7 +9,11 @@
                     <select id="id_stream" style="width:140px; color:black;">
                         {% if stream_list %}
                             {% for q in stream_list %}
+<<<<<<< HEAD
                                 <option value="">{{ q.stream_name }}</option>
+=======
+                                <option>{{ q.stream_name }}</option>
+>>>>>>> f2d8a1fdf3a7a72e7145a1d437698a997135cf9f
                             {% endfor %}
                         {% endif %}
                     </select>
@@ -27,14 +31,69 @@
                     <select id="id_subject" style="width:140px; color:black;">
                         {% if subject_list %}
                             {% for q in subject_list %}
+<<<<<<< HEAD
                                 <option value="/kitab/contact/">{{ q.subject_name }}</option>
+=======
+                                <option>{{ q.subject_name }}</option>
+>>>>>>> f2d8a1fdf3a7a72e7145a1d437698a997135cf9f
                                 <!-- <a href="kitab/show_book/"+"?param="+{{ q.subject_name }}><option>{{ q.subject_name }}</option></a>-->
                             {% endfor %}
                         {% endif %}
                     </select>
                     <br><br>
                 </div>
+<<<<<<< HEAD
 
+=======
+             <!--    
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
+                                <div for="id_stream">Select Stream<span class="fa arrow"></span></div>
+                            </a>
+                            <ul class="nav nav-second-level">
+                            {% if stream_list %}
+                              {% for q in stream_list %}
+                                <li>
+                                    <a href="#" for="id_stream">{{ q.stream_name }}</a>
+                                </li>
+                              {% endfor %}
+                            {% endif %}  
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 
+                                <div for="id_course"> Select Course <span class="fa arrow"></span></div>
+                            </a>
+                            <ul class="nav nav-second-level">
+                            {% if course_list %}
+                              {% for c1 in course_list %}
+                                <li>
+                                    <a href="/kitab/{{ c1.id }}/" for="id_course">{{ c1.course_name }}</a>
+                                </li>
+                              {% endfor %}
+                            {% endif %}  
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Select Subject<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                            {% if subject_list %}
+                              {% for s in subject_list %}
+                                <li>
+                                    <a href="/kitab/{{ s.id }}/" for="id_subject">{{ s1.subject_name }}</a>
+                                </li>
+                              {% endfor %}
+                            {% endif %}  
+                            </ul>
+                        </li>
+                    </ul>
+                </div>   
+            </div>
+            -->
+>>>>>>> f2d8a1fdf3a7a72e7145a1d437698a997135cf9f
 
             
             <div class="templatemo_content_left_section">

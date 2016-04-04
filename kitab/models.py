@@ -28,7 +28,7 @@ class subject(models.Model):
 class book(models.Model):
 	book_name = models.CharField(max_length=200)
 	book_author = models.CharField(max_length=200)
-	book_isbn = models.IntegerField(max_length=13)
+	book_isbn = models.IntegerField()
 	book_edition = models.CharField(max_length=50)
 	book_pdf_link = models.CharField(max_length=250)
 
@@ -69,7 +69,8 @@ class contactus(models.Model):
 	fname = models.CharField(max_length=50)
 	lname = models.CharField(max_length=50)
 	email = models.EmailField(max_length=50)
-	phone_no = models.BigIntegerField(max_length=13)
+	phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+	phone_no = models.CharField(validators=[phone_regex], max_length=15, blank=True)
 	message = models.TextField(max_length=5000)
 
 	def __unicode__(self):              

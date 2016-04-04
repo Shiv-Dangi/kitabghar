@@ -12,7 +12,11 @@ urlpatterns = patterns('',
     url(r'^kitab/catagaries/$', views.catagaries, name='catagaries'),
     url(r'^kitab/catagaries/kitab/get_course/(?P<strm_id>\w+)/$', views.get_course, name = 'get_course'),
     url(r'^kitab/catagaries/kitab/get_subject/(?P<cours_id>\S+)/$', views.get_subject, name = 'get_subject'),
+<<<<<<< HEAD
     url(r'^kitab/catagaries/kitab/show_book/(?P<sub_id>\S+)/$', views.show_book, name = 'show_book'),
+=======
+    url(r'^kitab/catagaries/kitab/show_book/(?P<sub_name>\w+)/$', views.show_book, name = 'show_book'),
+>>>>>>> f2d8a1fdf3a7a72e7145a1d437698a997135cf9f
     url(r'^kitab/howitworks/$', views.howitworks, name='howitworks'),
     url(r'^kitab/requestbook/$', views.requestbook, name='requestbook'),
     url(r'^kitab/catagaries/(?P<pk>\d+)/$', views.show_book, name='show_book'),

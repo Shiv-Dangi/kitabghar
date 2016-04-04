@@ -38,6 +38,10 @@
 	                        <div class="cleaner">&nbsp;</div>
 	                      </div>
 	                      <div class="cleaner_with_width">&nbsp;</div>
+<<<<<<< HEAD
+=======
+                          <div class="cleaner_with_height">&nbsp;</div>
+>>>>>>> f2d8a1fdf3a7a72e7145a1d437698a997135cf9f
                     	{% endfor %}
                   {% else %}
                     <p>No Book Found</p>
@@ -117,13 +121,22 @@
         });
 
         $('#id_subject').change(function(){  
+<<<<<<< HEAD
         sub_id = $(this).val();
         request_url = 'kitab/show_book/' + sub_id + '/';
+=======
+        sub_name = $(this).val();
+        request_url = 'kitab/show_book/' + sub_name + '/';
+>>>>>>> f2d8a1fdf3a7a72e7145a1d437698a997135cf9f
         alert(request_url)
         $.ajax({
                 url: request_url,
                 success: function(data){
                 data = $.parseJSON(data);
+<<<<<<< HEAD
+=======
+                alert(data);
+>>>>>>> f2d8a1fdf3a7a72e7145a1d437698a997135cf9f
                 //alert(typeof(data))
                 //$('#id_subject').html('<option selected="' + "selected" + '">' + '' +'</option>');
                 $.each(data, function(key, value){
